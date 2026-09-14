@@ -12,19 +12,17 @@
 
 | 你要做的 | 去哪 | 怎么结束 |
 | --- | --- | --- |
-| 派一件活——有明确范围和验收标准,会被 PR 关掉 | **Issues** → New issue → 「任务」 | PR `closes #n` |
+| 派一件活——有明确范围和验收标准,会被 PR 关掉 | **Issues** → New issue | PR `closes #n` |
 | 还没想清楚——质询、头脑风暴、待决的设计问题 | **Discussions** → New discussion → **Ideas** | 聊出结论 |
 
-两处的表单都有一个 **名单** 字段,预填成 front-matter 的样子:
+**任务轨没有表单**,直接开就行——仓库的协调者会读完再补规格、必要时追问。
 
-```yaml
----
-assist: [leader]
----
-```
+**对话轨的表单有一个 `Agent` 下拉**,选你想找的角色。它不只是给人看的——**这一项就是路由依据**,
+选谁就只有谁被叫醒。两个后果跟着来:
 
-改这个名单就是选谁来。**不确定找谁就留空**——仓库的协调者会读、必要时追问,补齐规格再派人。名单填错、
-或者帖子是从别的 category 搬过来的(表单管不住这种),都不会报错,兜底交给协调者。
+- **把帖子从别的 category 搬进 Ideas 是没用的。** 那种帖子正文里没有 `### Agent` 段,
+  事件会被**丢弃**——没有人被叫醒,也不会有任何报错。要进对话轨就走 New discussion。
+- **下拉里的名字必须是真实存在的角色 id**。填一个本项目没部署的角色,同样是静默丢弃。
 
 两条规矩:
 
@@ -42,7 +40,9 @@ label、topic、Discussions 开关、分支保护、看板是**投影**:由 `dev
 1. 换掉本文件顶部的标题和介绍。
 2. 把这个仓库接进项目声明,然后 `devteam project apply`。
 3. Discussions 开关由 apply 负责,但 **Ideas category 是 GitHub 自带的**,开了就有,不用建。
-4. `.github/ISSUE_TEMPLATE/config.yml` 不在模板里——它要写死本仓库的 Discussions URL,
+4. **把 `ideas.yml` 里 `Agent` 下拉的 options 改成本项目实际部署的角色 id。** 模板只能给一个
+   `leader` 占位——角色是项目级的,模板知道不了。漏了这一步,人就只能找 leader。
+5. `.github/ISSUE_TEMPLATE/config.yml` 不在模板里——它要写死本仓库的 Discussions URL,
    模板给不出来。想在 New issue 页上挂一条「找 agent 聊聊」的引导,自己加。
 
 **默认分支是 `develop`**,不是 `main`。generate 出来的仓库跟模板走,别改——整条交付链的最后一站是它。
@@ -53,8 +53,7 @@ label、topic、Discussions 开关、分支保护、看板是**投影**:由 `dev
 | --- | --- |
 | `AGENTS.md` | 给 agent 看的行为准则 + **文档地图**(什么东西该写在哪) |
 | `docs/agents/*.md` | skill 的配置面:这个仓库的 issue tracker、label 词表、领域文档布局 |
-| `.github/ISSUE_TEMPLATE/task.yml` | 任务轨入口 |
-| `.github/DISCUSSION_TEMPLATE/ideas.yml` | 对话轨入口 |
+| `.github/DISCUSSION_TEMPLATE/ideas.yml` | 对话轨入口。里面 `Agent` 下拉的 options **generate 之后要改成本项目实际的角色**，而 `label: Agent` 这个字符串是和路由器的约定，别改 |
 
 **东西该写在哪以 `AGENTS.md` 的表为准**,这里不复制一份——两份就是两个真相。三条结论先摆在这:
 
