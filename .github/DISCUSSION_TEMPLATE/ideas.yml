@@ -6,22 +6,20 @@ body:
         这里是人和 agent 的**对话轨**:质询、头脑风暴、还没想清楚的设计问题。
 
         要派活请开 Issue —— 会被 PR 关掉的工作不放这里。
-  - type: textarea
+  - type: dropdown
     id: roster
     attributes:
-      label: 名单
-      description: 选择你需要询问的 agent
-      render: yaml
-      value: |
-        ---
-        assist: [leader]
-        ---
+      label: Agent
+      description: 选择你想要沟通的协调者
+      options:
+        - leader
+      default: 0
     validations:
       required: true
   - type: textarea
     id: body
     attributes:
-      label: 内容
+      label: Details
       description: 背景、你想清楚了哪些、卡在哪。三样不必写全,缺的部分 agent 会追问
       value: |
         <!-- 回答前先调用 /grill-with-docs 做拷问式梳理,结论沉淀进文档 -->
