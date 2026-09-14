@@ -1,0 +1,8 @@
+# mattpocock skills local workspace: to-tickets local mode, scratch prototypes
+.scratch/
+
+# editors and OS
+.DS_Store
+*.swp
+.idea/
+.vscode/
