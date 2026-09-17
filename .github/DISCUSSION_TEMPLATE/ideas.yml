@@ -1,4 +1,5 @@
 title: "[devteam] "
+labels: ["grill"]
 body:
   - type: markdown
     attributes:
@@ -21,7 +22,5 @@ body:
     attributes:
       label: Details
       description: 背景、你想清楚了哪些、卡在哪。三样不必写全,缺的部分 agent 会追问
-      value: |
-        <!-- 回答前先调用 /grill-with-docs 做拷问式梳理,结论沉淀进文档 -->
     validations:
       required: true
